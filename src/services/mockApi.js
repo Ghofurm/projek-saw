@@ -1,89 +1,100 @@
-// Mock API Service for SPK SAW
-// Persisted in localStorage
+// API Service for SPK SAW connecting to Express REST API
+// Migrated from localStorage mock to actual MySQL-backed API
 
-const STORAGE_KEYS = {
-  CRITERIA: 'saw_spk_criteria',
-  ALTERNATIVES: 'saw_spk_alternatives',
-  SCORES: 'saw_spk_scores'
-};
+const API_URL = 'http://localhost:5000/api';
 
-// Initial Dummy Data
-const INITIAL_CRITERIA = [
-  { id: 'C1', name: 'Harga (Juta Rp)', type: 'cost', weight: 0.30 },
-  { id: 'C2', name: 'Kualitas Layar (Skala 1-10)', type: 'benefit', weight: 0.25 },
-  { id: 'C3', name: 'Performa Prosesor (Skala 1-10)', type: 'benefit', weight: 0.20 },
-  { id: 'C4', name: 'Daya Tahan Baterai (Jam)', type: 'benefit', weight: 0.15 },
-  { id: 'C5', name: 'Kapasitas RAM (GB)', type: 'benefit', weight: 0.10 }
-];
-
-const INITIAL_ALTERNATIVES = [
-  { id: 'A1', name: 'Asus ROG Zephyrus' },
-  { id: 'A2', name: 'MacBook Air M2' },
-  { id: 'A3', name: 'Lenovo ThinkPad X1' },
-  { id: 'A4', name: 'Acer Swift Go' }
-];
-
-const INITIAL_SCORES = {
-  'A1': { 'C1': 22.5, 'C2': 9.0, 'C3': 9.5, 'C4': 6.5, 'C5': 16.0 },
-  'A2': { 'C1': 18.0, 'C2': 9.5, 'C3': 8.5, 'C4': 9.5, 'C5': 8.0 },
-  'A3': { 'C1': 25.0, 'C2': 8.5, 'C3': 8.0, 'C4': 8.0, 'C5': 16.0 },
-  'A4': { 'C1': 11.5, 'C2': 8.0, 'C3': 7.5, 'C4': 7.0, 'C5': 8.0 }
-};
-
-// Helpers for localStorage
-const getFromStorage = (key, defaultValue) => {
-  const data = localStorage.getItem(key);
-  if (!data) {
-    localStorage.setItem(key, JSON.stringify(defaultValue));
-    return defaultValue;
-  }
-  return JSON.parse(data);
-};
-
-const saveToStorage = (key, data) => {
-  localStorage.setItem(key, JSON.stringify(data));
-};
-
-// --- MOCK API INTERFACE ---
-
-// CRITERIA CRUD
+// --- CRITERIA API ---
 export const getCriteria = async () => {
-  return getFromStorage(STORAGE_KEYS.CRITERIA, INITIAL_CRITERIA);
+  const res = await fetch(`${API_URL}/criteria`);
+  if (!res.ok) throw new Error('Gagal mengambil kriteria dari server');
+  return res.json();
 };
 
-export const saveCriteria = async (criteria) => {
-  saveToStorage(STORAGE_KEYS.CRITERIA, criteria);
-  return criteria;
+export const addCriterion = async (criterion) => {
+  const res = await fetch(`${API_URL}/criteria`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(criterion)
+  });
+  if (!res.ok) throw new Error('Gagal menambahkan kriteria');
+  return res.json();
 };
 
-// ALTERNATIVES CRUD
+export const updateCriterion = async (id, criterion) => {
+  const res = await fetch(`${API_URL}/criteria/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(criterion)
+  });
+  if (!res.ok) throw new Error('Gagal memperbarui kriteria');
+  return res.json();
+};
+
+export const deleteCriterion = async (id) => {
+  const res = await fetch(`${API_URL}/criteria/${id}`, {
+    method: 'DELETE'
+  });
+  if (!res.ok) throw new Error('Gagal menghapus kriteria');
+  return res.json();
+};
+
+// --- ALTERNATIVES API ---
 export const getAlternatives = async () => {
-  return getFromStorage(STORAGE_KEYS.ALTERNATIVES, INITIAL_ALTERNATIVES);
+  const res = await fetch(`${API_URL}/alternatives`);
+  if (!res.ok) throw new Error('Gagal mengambil alternatif dari server');
+  return res.json();
 };
 
-export const saveAlternatives = async (alternatives) => {
-  saveToStorage(STORAGE_KEYS.ALTERNATIVES, alternatives);
-  return alternatives;
+export const addAlternative = async (alternative) => {
+  const res = await fetch(`${API_URL}/alternatives`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(alternative)
+  });
+  if (!res.ok) throw new Error('Gagal menambahkan alternatif');
+  return res.json();
 };
 
-// SCORES CRUD
+export const updateAlternative = async (id, alternative) => {
+  const res = await fetch(`${API_URL}/alternatives/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(alternative)
+  });
+  if (!res.ok) throw new Error('Gagal memperbarui alternatif');
+  return res.json();
+};
+
+export const deleteAlternative = async (id) => {
+  const res = await fetch(`${API_URL}/alternatives/${id}`, {
+    method: 'DELETE'
+  });
+  if (!res.ok) throw new Error('Gagal menghapus alternatif');
+  return res.json();
+};
+
+// --- SCORES API ---
 export const getScores = async () => {
-  return getFromStorage(STORAGE_KEYS.SCORES, INITIAL_SCORES);
+  const res = await fetch(`${API_URL}/scores`);
+  if (!res.ok) throw new Error('Gagal mengambil matriks penilaian dari server');
+  return res.json();
 };
 
-export const saveScores = async (scores) => {
-  saveToStorage(STORAGE_KEYS.SCORES, scores);
-  return scores;
+export const updateScore = async (alternativeId, criterionId, score) => {
+  const res = await fetch(`${API_URL}/scores`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ alternativeId, criterionId, score })
+  });
+  if (!res.ok) throw new Error('Gagal menyimpan nilai');
+  return res.json();
 };
 
-// RESET TO INITIAL DUMMY
+// --- DEMO RESET API ---
 export const resetToDefault = async () => {
-  localStorage.setItem(STORAGE_KEYS.CRITERIA, JSON.stringify(INITIAL_CRITERIA));
-  localStorage.setItem(STORAGE_KEYS.ALTERNATIVES, JSON.stringify(INITIAL_ALTERNATIVES));
-  localStorage.setItem(STORAGE_KEYS.SCORES, JSON.stringify(INITIAL_SCORES));
-  return {
-    criteria: INITIAL_CRITERIA,
-    alternatives: INITIAL_ALTERNATIVES,
-    scores: INITIAL_SCORES
-  };
+  const res = await fetch(`${API_URL}/reset`, {
+    method: 'POST'
+  });
+  if (!res.ok) throw new Error('Gagal mereset demo data');
+  return res.json();
 };
