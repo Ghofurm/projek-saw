@@ -207,75 +207,19 @@ exports.updateScore = async (req, res) => {
 
 exports.resetDemoData = async (req, res) => {
   try {
-    // Jalankan pembersihan data
+    // Jalankan pembersihan data (mengosongkan seluruh tabel)
     await db.query('DELETE FROM nilai_alternatif');
     await db.query('DELETE FROM alternatif');
     await db.query('DELETE FROM kriteria');
 
-    // Re-populate criteria
-    const criteria = [
-      ['C1', 'Harga (Juta Rp)', 'cost', 0.3000],
-      ['C2', 'Kualitas Layar (Skala 1-10)', 'benefit', 0.2500],
-      ['C3', 'Performa Prosesor (Skala 1-10)', 'benefit', 0.2000],
-      ['C4', 'Daya Tahan Baterai (Jam)', 'benefit', 0.1500],
-      ['C5', 'Kapasitas RAM (GB)', 'benefit', 0.1000]
-    ];
-    for (const c of criteria) {
-      await db.query('INSERT INTO kriteria (id, name, type, weight) VALUES (?, ?, ?, ?)', c);
-    }
-
-    // Re-populate alternatives
-    const alternatives = [
-      ['A1', 'Asus ROG Zephyrus'],
-      ['A2', 'MacBook Air M2'],
-      ['A3', 'Lenovo ThinkPad X1'],
-      ['A4', 'Acer Swift Go']
-    ];
-    for (const a of alternatives) {
-      await db.query('INSERT INTO alternatif (id, name) VALUES (?, ?)', a);
-    }
-
-    // Re-populate scores
-    const scores = [
-      ['A1', 'C1', 22.5000], ['A1', 'C2', 9.0000], ['A1', 'C3', 9.5000], ['A1', 'C4', 6.5000], ['A1', 'C5', 16.0000],
-      ['A2', 'C1', 18.0000], ['A2', 'C2', 9.5000], ['A2', 'C3', 8.5000], ['A2', 'C4', 9.5000], ['A2', 'C5', 8.0000],
-      ['A3', 'C1', 25.0000], ['A3', 'C2', 8.5000], ['A3', 'C3', 8.0000], ['A3', 'C4', 8.0000], ['A3', 'C5', 16.0000],
-      ['A4', 'C1', 11.5000], ['A4', 'C2', 8.0000], ['A4', 'C3', 7.5000], ['A4', 'C4', 7.0000], ['A4', 'C5', 8.0000]
-    ];
-    for (const s of scores) {
-      await db.query('INSERT INTO nilai_alternatif (alternatif_id, kriteria_id, score) VALUES (?, ?, ?)', s);
-    }
-
-    // Ambil data terbaru untuk dikembalikan ke frontend
-    const [fetchedCriteria] = await db.query('SELECT * FROM kriteria');
-    const [fetchedAlternatives] = await db.query('SELECT * FROM alternatif');
-    const [fetchedScores] = await db.query('SELECT * FROM nilai_alternatif');
-
-    const formattedCriteria = fetchedCriteria.map(c => ({
-      id: c.id,
-      name: c.name,
-      type: c.type,
-      weight: parseFloat(c.weight)
-    }));
-
-    const formattedScores = {};
-    fetchedScores.forEach(s => {
-      const altId = s.alternatif_id;
-      const critId = s.kriteria_id;
-      if (!formattedScores[altId]) {
-        formattedScores[altId] = {};
-      }
-      formattedScores[altId][critId] = parseFloat(s.score);
-    });
-
     res.json({
-      message: 'Demo data successfully reset',
-      criteria: formattedCriteria,
-      alternatives: fetchedAlternatives,
-      scores: formattedScores
+      message: 'All data successfully cleared',
+      criteria: [],
+      alternatives: [],
+      scores: {}
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Gagal melakukan reset demo data' });
+    res.status(500).json({ error: 'Gagal mengosongkan data' });
   }
 };
