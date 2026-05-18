@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Space+Grotesk:wght@500;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --color-neo-yellow: #FFE600;
+  --color-neo-orange: #FF9F1C;
+  --color-neo-green: #2EC4B6;
+  --color-neo-blue: #3A86C8;
+  --color-neo-pink: #FF007F;
+  --color-neo-red: #FF6B6B;
+  --color-neo-purple: #9b5de5;
+}
+
+body {
+  background-color: #f3f4f6; /* bg-gray-100 fallback */
+  background-image: 
+    radial-gradient(#000000 1px, transparent 1px), 
+    radial-gradient(#000000 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  background-color: #f7f6f0; /* retro off-white / light cream */
+  color: #1A1A1A;
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Neobrutalism scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #f7f6f0;
+  border-left: 3px solid #000;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #FFE600;
+  border: 3px solid #000;
+}
+
+/* Custom classes for neobrutalism components */
+.neo-border {
+  border: 3px solid #000000;
+}
+
+.neo-shadow {
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+.neo-shadow-lg {
+  box-shadow: 8px 8px 0px 0px #000000;
+}
+
+.neo-shadow-sm {
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+.neo-button {
+  background-color: #FFE600;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px 0px #000000;
+  font-weight: 800;
+  transition: all 0.15s ease-in-out;
+}
+
+.neo-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+.neo-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000000;
+}
