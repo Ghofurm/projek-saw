@@ -10,11 +10,11 @@ const Footer = () => {
         {/* Info Column */}
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 w-fit px-3 py-1 bg-neo-green border-3 border-black shadow-[3px_3px_0px_#000] font-black text-lg">
-            <Icon icon="ph:cpu-bold" className="text-xl" />
-            <span>SPK SAW</span>
+            <Icon icon="ph:storefront-bold" className="text-xl" />
+            <span>Lookmanstore.id</span>
           </div>
           <p className="font-extrabold text-sm text-gray-700">
-            Sistem Pendukung Keputusan menggunakan metode Simple Additive Weighting (SAW).
+            SPK Pemilihan Produk Terlayak Promosi Marketplace menggunakan metode Simple Additive Weighting (SAW).
           </p>
         </div>
 
@@ -53,7 +53,7 @@ const Footer = () => {
 
       <div className="max-w-7xl mx-auto border-t-3 border-black mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-xs font-black text-gray-600">
-          &copy; {new Date().getFullYear()} SPK SAW - Neobrutalism Edition.
+          &copy; {new Date().getFullYear()} Lookmanstore.id - SPK Promosi Marketplace.
         </p>
         <div className="flex gap-4">
           <a href="#" className="p-1.5 bg-white border-2 border-black hover:bg-neo-yellow hover:translate-y-[-2px] transition-all">

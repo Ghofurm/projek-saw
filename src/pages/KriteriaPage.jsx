@@ -77,7 +77,7 @@ const KriteriaPage = () => {
             <span>Kriteria & Bobot</span>
           </h2>
           <p className="font-extrabold text-xs text-gray-600">
-            Daftar parameter pembanding keputusan beserta bobot prioritasnya (dalam format float/desimal).
+            Daftar parameter penilaian produk (seperti ROI iklan, tren pasar, dll.) beserta bobot tingkat kepentingannya.
           </p>
         </div>
         
@@ -223,7 +223,7 @@ const KriteriaPage = () => {
                 <label className="font-extrabold text-sm uppercase">Nama Kriteria :</label>
                 <input
                   type="text"
-                  placeholder="Masukkan nama (contoh: Kualitas Layar)"
+                  placeholder="Masukkan nama (contoh: Estimasi ROI Promosi)"
                   value={critName}
                   onChange={(e) => setCritName(e.target.value)}
                   className="p-3 border-3 border-black bg-[#F7F6F0] font-bold text-sm shadow-[3px_3px_0px_#000] focus:translate-x-[-1px] focus:translate-y-[-1px] focus:shadow-[4px_4px_0px_#000] focus:outline-none transition-all"
@@ -252,7 +252,7 @@ const KriteriaPage = () => {
                   step="0.0001"
                   min="0"
                   max="1"
-                  placeholder="Masukkan bobot desimal (contoh: 0.25)"
+                  placeholder="Masukkan bobot desimal (contoh: 0.30)"
                   value={critWeight}
                   onChange={(e) => setCritWeight(e.target.value)}
                   className="p-3 border-3 border-black bg-[#F7F6F0] font-mono font-bold text-sm shadow-[3px_3px_0px_#000] focus:translate-x-[-1px] focus:translate-y-[-1px] focus:shadow-[4px_4px_0px_#000] focus:outline-none transition-all"

@@ -22,8 +22,8 @@ const Navbar = () => {
           to="/" 
           className="flex items-center gap-2 px-3 py-1 bg-neo-yellow border-3 border-black shadow-[3px_3px_0px_#000] font-black text-xl hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[4px_4px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#000] transition-all"
         >
-          <Icon icon="ph:cpu-bold" className="text-2xl" />
-          <span>SPK - SAW</span>
+          <Icon icon="ph:storefront-bold" className="text-2xl" />
+          <span>Lookmanstore.id</span>
         </NavLink>
 
         {/* Desktop Menu */}
