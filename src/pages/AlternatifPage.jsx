@@ -60,7 +60,7 @@ const AlternatifPage = () => {
             <span>Data Alternatif</span>
           </h2>
           <p className="font-extrabold text-xs text-gray-600">
-            Daftar pilihan / objek keputusan yang akan dievaluasi dalam sistem pendukung keputusan.
+            Daftar produk-produk jualan Lookmanstore.id yang akan dinilai kelayakannya untuk promosi.
           </p>
         </div>
         
@@ -154,7 +154,7 @@ const AlternatifPage = () => {
                 <label className="font-extrabold text-sm uppercase">Nama Alternatif :</label>
                 <input
                   type="text"
-                  placeholder="Masukkan nama alternatif (contoh: Asus ROG Zephyrus)"
+                  placeholder="Masukkan nama alternatif (contoh: Kemeja Flanel Lookman)"
                   value={altName}
                   onChange={(e) => setAltName(e.target.value)}
                   className="p-3 border-3 border-black bg-[#F7F6F0] font-bold text-sm shadow-[3px_3px_0px_#000] focus:translate-x-[-1px] focus:translate-y-[-1px] focus:shadow-[4px_4px_0px_#000] focus:outline-none transition-all"

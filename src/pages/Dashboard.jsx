@@ -7,9 +7,9 @@ const Dashboard = () => {
   const { criteria, alternatives, resetAllData } = useContext(AppContext);
 
   const handleReset = async () => {
-    if (window.confirm("Apakah Anda yakin ingin mengatur ulang data kembali ke setelan pabrik (dummy data)? Semua data baru yang Anda masukkan akan hilang.")) {
+    if (window.confirm("Apakah Anda yakin ingin mengosongkan seluruh data? Semua kriteria, alternatif, dan skor yang sudah Anda masukkan akan dihapus secara permanen.")) {
       await resetAllData();
-      alert("Data berhasil diatur ulang!");
+      alert("Seluruh data berhasil dikosongkan!");
     }
   };
 
@@ -58,12 +58,12 @@ const Dashboard = () => {
         </span>
         
         <h1 className="text-4xl md:text-6xl font-black leading-none m-0 uppercase tracking-tight">
-          Pilih Terbaik Dengan Hitungan Pasti!
+          Produk Terlayak Promosi Marketplace!
         </h1>
         
         <p className="font-extrabold text-lg md:text-xl max-w-3xl text-gray-800 leading-relaxed">
-          Sistem Pendukung Keputusan (SPK) berbasis web dengan metode **Simple Additive Weighting (SAW)**. 
-          Sederhanakan proses pengambilan keputusan multi-kriteria secara transparan, akurat, dan estetik.
+          Sistem Pendukung Keputusan (SPK) berbasis web menggunakan metode **Simple Additive Weighting (SAW)**.
+          Tentukan produk terbaik dari **Lookmanstore.id** yang paling layak dipromosikan di berbagai marketplace secara akurat, transparan, dan terukur.
         </p>
 
         <div className="flex flex-wrap gap-4 mt-2">
@@ -79,8 +79,8 @@ const Dashboard = () => {
             onClick={handleReset}
             className="flex items-center gap-2 px-6 py-3 bg-white text-black border-3 border-black shadow-[4px_4px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#000] font-black transition-all"
           >
-            <Icon icon="ph:arrow-counter-clockwise-bold" className="text-xl" />
-            <span>Reset Demo Data</span>
+            <Icon icon="ph:trash-bold" className="text-xl" />
+            <span>Kosongkan Seluruh Data</span>
           </button>
         </div>
       </section>
@@ -121,7 +121,7 @@ const Dashboard = () => {
       {/* Steps & Workflow */}
       <section className="flex flex-col gap-6">
         <h2 className="text-2xl md:text-3xl font-black uppercase text-center border-b-4 border-black pb-2 w-fit mx-auto">
-          Alur Kerja SPK SAW
+          Alur SPK Lookmanstore
         </h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -151,10 +151,9 @@ const Dashboard = () => {
       {/* Brief Explanation */}
       <section className="bg-white p-6 md:p-8 neo-border neo-shadow grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="flex flex-col gap-4">
-          <h3 className="text-2xl font-black uppercase">Apa itu Metode SAW?</h3>
+          <h3 className="text-2xl font-black uppercase">SAW untuk Lookmanstore</h3>
           <p className="font-bold text-sm text-gray-700 leading-relaxed">
-            Metode **Simple Additive Weighting (SAW)** sering dikenal dengan istilah metode penjumlahan berbobot. 
-            Konsep dasar metode ini adalah mencari penjumlahan berbobot dari rating kinerja pada setiap alternatif untuk semua kriteria.
+            Metode **Simple Additive Weighting (SAW)** atau metode penjumlahan berbobot diimplementasikan untuk melakukan perangkingan produk **Lookmanstore.id** berdasarkan kriteria-kriteria performa iklan dan prospek penjualan.
           </p>
           <p className="font-bold text-sm text-gray-700 leading-relaxed">
             Metode ini membutuhkan proses **Normalisasi** matriks keputusan ($X$) ke suatu skala yang dapat diperbandingkan dengan semua rating alternatif yang ada. 

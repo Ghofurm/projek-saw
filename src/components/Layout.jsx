@@ -6,8 +6,8 @@ const Layout = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col bg-[#F7F6F0]">
       {/* Top Banner decoration */}
-      <div className="bg-black text-white text-center py-1 font-bold text-xs tracking-wider border-b-2 border-black">
-        ⚡ SISTEM PENDUKUNG KEPUTUSAN METODE SAW (SIMPLE ADDITIVE WEIGHTING) ⚡
+      <div className="bg-black text-white text-center py-1.5 font-bold text-xs tracking-wider border-b-2 border-black">
+        ⚡ SPK LOOKMANSTORE.ID - MEMILIH PRODUK PALING LAYAK DIPROMOSIKAN DI MARKETPLACE ⚡
       </div>
       
       <Navbar />
